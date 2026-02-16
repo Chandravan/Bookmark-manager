@@ -14,7 +14,7 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [https://bookmark-manager-murex-six.vercel.app/] with your browser to see the result.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
@@ -22,15 +22,94 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+# 📌 MarkIt - Modern Bookmark Manager
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+A clean, minimalist, and secure bookmark management application built with **Next.js 15** and **Supabase**. This tool allows users to organize their project resources and important links in a unified, professional dashboard.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Live Demo
 
-## Deploy on Vercel
+**[https://bookmark-manager-murex-six.vercel.app]**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Features
+
+- **Secure Authentication:** Integrated Google OAuth using Supabase Auth for a seamless, passwordless login.
+- **Protected Layouts:** Implemented a Root Layout that conditionally renders the Navbar only for authenticated users.
+- **CRUD Operations:** Fully functional interface to add, view, and delete bookmarks.
+- **Modern UI/UX:** Styled with **Tailwind CSS**, featuring:
+  - Responsive card layouts.
+  - Tactile feedback (active-scale buttons).
+  - Clean, accessible typography.
+- **Real-time Auth State:** Uses `onAuthStateChange` to instantly update the UI when a user logs in or out without requiring a page refresh.
+- **Optimistic UI:** Local state updates immediately upon bookmark deletion to provide a lag-free experience.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Framework:** Next.js (App Router)
+- **Database:** Supabase (PostgreSQL)
+- **Authentication:** Supabase Auth (Google OAuth)
+- **Styling:** Tailwind CSS
+- **Deployment:** Vercel
+
+---
+
+## ⚙️ Local Setup
+
+Follow these steps to run the project on your local machine:
+
+1.  **Clone the repository:**
+
+    ```bash
+    git clone https://github.com/Chandravan/Bookmark-manager
+    cd Bookmark-manager
+    ```
+
+2.  **Install dependencies:**
+
+    ```bash
+    npm install
+    ```
+
+3.  **Setup Environment Variables:**
+    Create a `.env.local` file in the root directory and add your Supabase credentials:
+
+    ```env
+    NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
+    NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+    ```
+
+4.  **Run the development server:**
+    ```bash
+    npm run dev
+    ```
+
+---
+
+## 🧠 Key Logic & Architecture
+
+### 1. Unified Layout
+
+The application uses a **Root Layout** approach. It wraps the entire app in a session check, ensuring that the navigation bar and private dashboard elements are only injected once the user is verified.
+
+### 2. Dynamic Redirect Management
+
+To ensure the app works across both Localhost and Production (Vercel), the OAuth flow uses `window.location.origin` as the redirect source. This eliminates hardcoded URLs and makes the deployment process smoother.
+
+### 3. Data Protection (RLS)
+
+Security is handled at the database level using Supabase **Row Level Security (RLS)**. Each delete or fetch request is scoped to the `user_id`, ensuring users can never access or modify each other's data.
+
+### 4. Component Reusability
+
+The UI is broken down into small, functional components (e.g., `BookmarkList`, `Navbar`), making the codebase easy to maintain and scale.
+
+---
+
+## 📄 License
+
+This project is open-source and available for educational purposes.
+
+**Developed by Chandravan**
